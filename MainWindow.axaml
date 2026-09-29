@@ -1,0 +1,128 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:scott="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+        mc:Ignorable="d"
+        x:Class="PressureFilterSimulator.MainWindow"
+        Width="1200"
+        Height="850"
+        Title="Pressure Filter Simulator">
+
+    <Grid RowDefinitions="Auto,*,*" Margin="15">
+
+        <StackPanel Grid.Row="0"
+                    Spacing="8"
+                    Margin="0,0,0,10">
+
+            <!-- Строка 1: генератор -->
+            <StackPanel Orientation="Horizontal"
+                        Spacing="15">
+
+                <TextBlock Text="Start pressure:"
+                           VerticalAlignment="Center"/>
+
+                <TextBox x:Name="PressureTextBox"
+                         Width="100"
+                         Text="0"/>
+
+                <TextBlock Text="PSI"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock Text="Max noise:"
+                           VerticalAlignment="Center"
+                           Margin="20,0,0,0"/>
+
+                <TextBox x:Name="NoiseTextBox"
+                         Width="100"
+                         Text="500"/>
+
+                <TextBlock Text="PSI"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock Text="Noise rate:"
+                           VerticalAlignment="Center"
+                           Margin="20,0,0,0"/>
+
+                <TextBox x:Name="NoiseRateTextBox"
+                         Width="80"
+                         Text="3.0"/>
+
+                <TextBlock Text="1/s"
+                           VerticalAlignment="Center"/>
+
+                <Button Content="Start"
+                        Click="StartButton_Click"
+                        Width="100"/>
+
+                <Button Content="Stop"
+                        Click="StopButton_Click"
+                        Width="100"/>
+
+            </StackPanel>
+
+            <!-- Строка 2: фильтр и диагностика -->
+            <StackPanel Orientation="Horizontal"
+                        Spacing="15">
+
+                <CheckBox x:Name="FilterEnabledCheckBox"
+                          Content="Filter"
+                          IsChecked="True"
+                          VerticalAlignment="Center"/>
+
+                <TextBlock Text="Alpha:"
+                           VerticalAlignment="Center"/>
+                <TextBox x:Name="AlphaTextBox"
+                         Width="80"
+                         Text="0.05"/>
+
+                <Button Content="Apply"
+                        Click="ApplyAlphaButton_Click"
+                        Width="70"/>
+
+                <TextBlock Text="RAW:"
+                           VerticalAlignment="Center"
+                           Margin="20,0,0,0"/>
+
+                <TextBlock x:Name="RawValueText"
+                           Width="80"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock Text="Stage 1:"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock x:Name="Stage1ValueText"
+                           Width="80"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock Text="Stage 2:"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock x:Name="Stage2ValueText"
+                           Width="80"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock Text="Actual:"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock x:Name="ActualAlphaText"
+                           Width="60"
+                           VerticalAlignment="Center"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- Исходный сигнал -->
+        <scott:AvaPlot x:Name="PressurePlot"
+                       Grid.Row="1"
+                       Margin="0,0,0,5"/>
+
+        <!-- Выход фильтра -->
+        <scott:AvaPlot x:Name="FilteredPlot"
+                       Grid.Row="2"
+                       Margin="0,5,0,0"/>
+
+    </Grid>
+
+</Window>
